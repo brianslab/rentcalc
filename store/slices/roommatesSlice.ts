@@ -4,11 +4,7 @@ import { Roommate } from '../../types';
 interface RoommateState {
   roommates: Roommate[];
 }
-interface AddRoommatePayload {
-  name: string;
-  split: number;
-}
-interface AddRoommateAction extends PayloadAction<AddRoommatePayload> {}
+interface AddRoommateAction extends PayloadAction<Roommate> {}
 
 const initialState: RoommateState = {
   roommates: [],
