@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit';
-import { Item } from '../../types';
+import { Item } from '../types';
 
 interface AddItemAction extends PayloadAction<Item> {}
 interface EditItemAction extends PayloadAction<Item> {}
@@ -12,7 +12,7 @@ const initialState: ItemState = {
   items: [],
 };
 
-const itemsSlice = createSlice({
+const purchasesSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
@@ -21,7 +21,7 @@ const itemsSlice = createSlice({
         id: nanoid(),
         name: action.payload.name,
         buyer: action.payload.buyer,
-        split: action.payload.split,
+        cost: action.payload.cost,
       });
     },
     editItem(state, action: EditItemAction) {
@@ -37,5 +37,5 @@ const itemsSlice = createSlice({
   },
 });
 
-export const { addItem, editItem, removeItem } = itemsSlice.actions;
-export const itemsReducer = itemsSlice.reducer;
+export const { addItem, editItem, removeItem } = purchasesSlice.actions;
+export const purchasesReducer = purchasesSlice.reducer;
