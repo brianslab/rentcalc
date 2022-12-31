@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   roommateReducer,
   changeRoommateName,
-  changeRoommateSplit,
+  changeRoommateRentSplit,
   changeRoomateOwes,
 } from './slices/roommateSlice';
 import {
@@ -13,8 +13,9 @@ import {
 import {
   itemReducer,
   changeItemName,
-  changeItemCost,
   changeItemBuyer,
+  changeItemCost,
+  changeItemSplit,
 } from './slices/itemSlice';
 import {
   purchasesReducer,
@@ -36,13 +37,14 @@ const store = configureStore({
 export {
   store,
   changeRoommateName,
-  changeRoommateSplit,
+  changeRoommateRentSplit,
   changeRoomateOwes,
   setRent,
   addRoommate,
   changeItemName,
-  changeItemCost,
   changeItemBuyer,
+  changeItemCost,
+  changeItemSplit,
   addItem,
   editItem,
   removeItem,

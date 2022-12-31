@@ -6,7 +6,7 @@ type Owes = Record<string, number>;
 const initialState: Roommate = {
   id: '',
   name: '',
-  split: 1,
+  rentSplit: 1,
   owes: {},
 };
 
@@ -17,8 +17,8 @@ const roommateSlice = createSlice({
     changeRoommateName(state, action: PayloadAction<string>) {
       state.name = action.payload;
     },
-    changeRoommateSplit(state, action: PayloadAction<number>) {
-      state.split = action.payload;
+    changeRoommateRentSplit(state, action: PayloadAction<number>) {
+      state.rentSplit = action.payload;
     },
     changeRoomateOwes(state, action: PayloadAction<Owes>) {
       state.owes = action.payload;
@@ -26,6 +26,9 @@ const roommateSlice = createSlice({
   },
 });
 
-export const { changeRoommateName, changeRoommateSplit, changeRoomateOwes } =
-  roommateSlice.actions;
+export const {
+  changeRoommateName,
+  changeRoommateRentSplit,
+  changeRoomateOwes,
+} = roommateSlice.actions;
 export const roommateReducer = roommateSlice.reducer;

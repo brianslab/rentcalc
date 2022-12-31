@@ -1,7 +1,7 @@
 export interface Roommate {
   id: string;
   name: string;
-  split: number;
+  rentSplit: number;
   owes: Record<string, number>;
 }
 
@@ -15,6 +15,7 @@ export interface Item {
   name: string;
   buyer: string;
   cost: number;
+  split: Record<string, number>;
 }
 
 export type Purchases = Item[];

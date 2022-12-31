@@ -19,7 +19,7 @@ const householdSlice = createSlice({
       state.roommates.push({
         id: String.fromCharCode(65 + state.roommates.length - 1),
         name: action.payload.name,
-        split: action.payload.split,
+        rentSplit: action.payload.rentSplit,
         owes: action.payload.owes,
       });
     },

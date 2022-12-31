@@ -19,11 +19,7 @@ function HouseholdForm() {
       <form>
         <div>
           <label>Rent cost</label>
-          <input
-            value={rent || ''}
-            onChange={handleRentChange}
-            type='number'
-          ></input>
+          <input value={rent || ''} onChange={handleRentChange} type='number' />
         </div>
       </form>
     </div>
