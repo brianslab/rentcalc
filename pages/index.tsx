@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import HouseholdForm from '../components/HouseholdForm';
+import HouseholdShow from '../components/HouseholdShow';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       </Head>
       <h1>RentCalc</h1>
       <HouseholdForm />
+      <HouseholdShow />
     </>
   );
 }

@@ -23,7 +23,6 @@ import {
   editItem,
   removeItem,
 } from './slices/purchasesSlice';
-import { Household, Item, Purchases, Roommate } from './types';
 
 const store = configureStore({
   reducer: {
@@ -49,10 +48,3 @@ export {
   editItem,
   removeItem,
 };
-
-export interface RootState {
-  roommate: Roommate;
-  household: Household;
-  item: Item;
-  purchases: Purchases;
-}

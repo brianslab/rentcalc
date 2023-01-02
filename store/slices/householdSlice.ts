@@ -17,7 +17,6 @@ const householdSlice = createSlice({
     },
     addRoommate(state, action: AddRoommateAction) {
       state.roommates.push({
-        id: String.fromCharCode(65 + state.roommates.length - 1),
         name: action.payload.name,
         rentSplit: action.payload.rentSplit,
         owes: action.payload.owes,

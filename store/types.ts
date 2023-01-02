@@ -1,5 +1,4 @@
 export interface Roommate {
-  id: string;
   name: string;
   rentSplit: number;
   owes: Record<string, number>;
@@ -19,3 +18,10 @@ export interface Item {
 }
 
 export type Purchases = Item[];
+
+export interface RootState {
+  roommate: Roommate;
+  household: Household;
+  item: Item;
+  purchases: Purchases;
+}
