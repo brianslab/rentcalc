@@ -29,8 +29,8 @@ function AddItem() {
   const handleCostChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeItemCost(parseFloat(event.target.value)));
   };
-  const handleBuyerChange = (event: any) => {
-    dispatch(changeItemBuyer(event.target.value));
+  const handleBuyerChange = (option: DropdownOptionType) => {
+    dispatch(changeItemBuyer(option.value));
   };
 
   return (
@@ -59,7 +59,7 @@ function AddItem() {
         </label>
         <label>
           Split:
-          <button>FIXME - dropdown form</button>
+          <button>FIXME - accordian form</button>
         </label>
         <div>
           <button>Add item</button>
