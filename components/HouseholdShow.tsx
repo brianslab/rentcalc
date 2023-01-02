@@ -1,13 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteRoommate } from '../store';
 import { Household, Roommate, RootState } from '../store/types';
 
 function HouseholdShow() {
+  const dispatch = useDispatch();
+
   const household = useSelector<RootState, Household>((state) => {
     return state.household;
   });
   const roommates = household.roommates;
 
-  const handleRoommateDelete = (roommate: Roommate) => {};
+  const handleRoommateDelete = (roommate: Roommate) => {
+    dispatch(deleteRoommate(roommate.id));
+  };
 
   const renderedRoommates = roommates.map((roommate) => {
     return (
@@ -15,7 +20,7 @@ function HouseholdShow() {
         <p>
           {roommate.name}, Split: {roommate.rentSplit}%
         </p>
-        <button onClick={() => handleRoommateDelete}>Delete</button>
+        <button onClick={() => handleRoommateDelete(roommate)}>Delete</button>
       </div>
     );
   });

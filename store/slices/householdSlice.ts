@@ -24,8 +24,13 @@ const householdSlice = createSlice({
         owes: action.payload.owes,
       });
     },
+    deleteRoommate(state, action: PayloadAction<string>) {
+      state.roommates = state.roommates.filter((roommate: Roommate) => {
+        return roommate.id !== action.payload;
+      });
+    },
   },
 });
 
-export const { setRent, addRoommate } = householdSlice.actions;
+export const { setRent, addRoommate, deleteRoommate } = householdSlice.actions;
 export const householdReducer = householdSlice.reducer;

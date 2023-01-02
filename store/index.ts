@@ -9,6 +9,7 @@ import {
   householdReducer,
   setRent,
   addRoommate,
+  deleteRoommate,
 } from './slices/householdSlice';
 import {
   itemReducer,
@@ -40,6 +41,7 @@ export {
   changeRoomateOwes,
   setRent,
   addRoommate,
+  deleteRoommate,
   changeItemName,
   changeItemBuyer,
   changeItemCost,
