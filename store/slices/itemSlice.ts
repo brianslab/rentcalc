@@ -1,5 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { Item } from '../types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Item, ItemSplit } from '../types';
+
+interface ChangeItemNameAction extends PayloadAction<string> {}
+interface ChangeItemBuyerAction extends PayloadAction<string> {}
+interface ChangeItemCostAction extends PayloadAction<number> {}
+interface ChangeItemSplitAction extends PayloadAction<ItemSplit> {}
 
 const initialState: Item = {
   id: '',
@@ -13,16 +18,16 @@ const itemSlice = createSlice({
   name: 'item',
   initialState,
   reducers: {
-    changeItemName(state, action) {
+    changeItemName(state, action: ChangeItemNameAction) {
       state.name = action.payload;
     },
-    changeItemBuyer(state, action) {
+    changeItemBuyer(state, action: ChangeItemBuyerAction) {
       state.buyer = action.payload;
     },
-    changeItemCost(state, action) {
+    changeItemCost(state, action: ChangeItemCostAction) {
       state.cost = action.payload;
     },
-    changeItemSplit(state, action) {
+    changeItemSplit(state, action: ChangeItemSplitAction) {
       state.split = action.payload;
     },
   },

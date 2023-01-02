@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Roommate } from '../types';
+import { Roommate, Owes } from '../types';
 import { addRoommate } from './householdSlice';
 
-type Owes = Record<string, number>;
+interface ChangeRoommateNameAction extends PayloadAction<string> {}
+interface ChangeRoommateRentSplitAction extends PayloadAction<number> {}
+interface ChangeRoommateOwesAction extends PayloadAction<Owes> {}
 
 const initialState: Roommate = {
   id: '',
@@ -15,13 +17,13 @@ const roommateSlice = createSlice({
   name: 'roommate',
   initialState,
   reducers: {
-    changeRoommateName(state, action: PayloadAction<string>) {
+    changeRoommateName(state, action: ChangeRoommateNameAction) {
       state.name = action.payload;
     },
-    changeRoommateRentSplit(state, action: PayloadAction<number>) {
+    changeRoommateRentSplit(state, action: ChangeRoommateRentSplitAction) {
       state.rentSplit = action.payload;
     },
-    changeRoomateOwes(state, action: PayloadAction<Owes>) {
+    changeRoomateOwes(state, action: ChangeRoommateOwesAction) {
       state.owes = action.payload;
     },
   },

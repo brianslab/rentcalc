@@ -2,7 +2,9 @@ import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { Roommate, Household } from '../types';
 
 type AddRoommateActionType = Omit<Roommate, 'id'>;
+interface SetRentAction extends PayloadAction<number> {}
 interface AddRoommateAction extends PayloadAction<AddRoommateActionType> {}
+interface DeleteRoommateAction extends PayloadAction<string> {}
 
 const initialState: Household = {
   rent: 0,
@@ -13,7 +15,7 @@ const householdSlice = createSlice({
   name: 'household',
   initialState,
   reducers: {
-    setRent(state, action: PayloadAction<number>) {
+    setRent(state, action: SetRentAction) {
       state.rent = action.payload;
     },
     addRoommate(state, action: AddRoommateAction) {
@@ -24,7 +26,7 @@ const householdSlice = createSlice({
         owes: action.payload.owes,
       });
     },
-    deleteRoommate(state, action: PayloadAction<string>) {
+    deleteRoommate(state, action: DeleteRoommateAction) {
       state.roommates = state.roommates.filter((roommate: Roommate) => {
         return roommate.id !== action.payload;
       });
