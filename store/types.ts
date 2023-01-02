@@ -21,7 +21,9 @@ export interface Item {
   split: ItemSplit;
 }
 
-export type Purchases = Item[];
+export interface Purchases {
+  items: Item[];
+}
 
 export interface RootState {
   roommate: Roommate;

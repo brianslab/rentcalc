@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Link from 'next/link';
 import HouseholdForm from '../components/HouseholdForm';
 import HouseholdShow from '../components/HouseholdShow';
 
@@ -8,6 +8,9 @@ export default function Home() {
       <h1>RentCalc</h1>
       <HouseholdForm />
       <HouseholdShow />
+      <Link href='/purchases'>
+        <button>Continue</button>
+      </Link>
     </>
   );
 }

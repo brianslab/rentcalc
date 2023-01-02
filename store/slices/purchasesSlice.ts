@@ -1,15 +1,12 @@
 import { createSlice, PayloadAction, nanoid } from '@reduxjs/toolkit';
-import { Item } from '../types';
+import { Item, Purchases } from '../types';
 
 type AddItemActionType = Omit<Item, 'id'>;
 interface AddItemAction extends PayloadAction<AddItemActionType> {}
 interface EditItemAction extends PayloadAction<Item> {}
 interface RemoveItemAction extends PayloadAction<string> {}
 
-interface ItemState {
-  items: Item[];
-}
-const initialState: ItemState = {
+const initialState: Purchases = {
   items: [],
 };
 
