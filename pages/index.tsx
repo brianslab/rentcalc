@@ -8,7 +8,7 @@ export default function Home() {
       <h1>RentCalc</h1>
       <HouseholdForm />
       <HouseholdShow />
-      <Link href='/purchases'>
+      <Link href='/purchases' prefetch={false}>
         <button>Continue</button>
       </Link>
     </>
