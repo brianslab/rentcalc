@@ -1,14 +1,36 @@
 import { useSelector } from 'react-redux';
-import { Roommate, RootState } from '../store/types';
+import { Household, Roommate, RootState } from '../store/types';
 
 function HouseholdShow() {
-  const roommates = useSelector<RootState, Roommate[]>((state) => {
-    return state.household.roommates;
+  const household = useSelector<RootState, Household>((state) => {
+    return state.household;
+  });
+  const roommates = household.roommates;
+
+  const handleRoommateDelete = (roommate: Roommate) => {};
+
+  const renderedRoommates = roommates.map((roommate) => {
+    return (
+      <div key={roommate.name}>
+        <p>
+          {roommate.name}, Split: {roommate.rentSplit}%
+        </p>
+        <button onClick={() => handleRoommateDelete}>Delete</button>
+      </div>
+    );
   });
 
-  console.log(roommates);
-
-  return <div>HouseholdShow</div>;
+  return (
+    <div>
+      <hr />
+      <p>Household</p>
+      <p>Rent: ${household.rent}</p>
+      <hr />
+      <p>Roommates:</p>
+      {renderedRoommates}
+      <hr />
+    </div>
+  );
 }
 
 export default HouseholdShow;

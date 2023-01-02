@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { Roommate, Household } from '../types';
 
-interface AddRoommateAction extends PayloadAction<Roommate> {}
+type AddRoommateActionType = Omit<Roommate, 'id'>;
+interface AddRoommateAction extends PayloadAction<AddRoommateActionType> {}
 
 const initialState: Household = {
   rent: 0,
@@ -17,6 +18,7 @@ const householdSlice = createSlice({
     },
     addRoommate(state, action: AddRoommateAction) {
       state.roommates.push({
+        id: nanoid(),
         name: action.payload.name,
         rentSplit: action.payload.rentSplit,
         owes: action.payload.owes,
