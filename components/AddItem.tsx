@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItemBuyer, changeItemCost, changeItemName } from '../store';
-import { RootState, Item } from '../store/types';
+import { RootState, Item, Roommate } from '../store/types';
 import Dropdown from './Dropdown';
 import { DropdownOptionType } from './DropdownTypes';
 
@@ -10,15 +10,18 @@ function AddItem() {
   const { name, buyer, cost, split } = useSelector<RootState, Item>((state) => {
     return state.item;
   });
-  const items = useSelector<RootState, Item[]>((state) => {
-    return state.purchases.items;
+  const roommates = useSelector<RootState, Roommate[]>((state) => {
+    return state.household.roommates;
   });
 
-  const BuyerDropdownOptions: DropdownOptionType[] = items.map((item: Item) => {
-    const conversion = { value: item.buyer, label: item.buyer };
-    console.log('Options', conversion);
-    return conversion;
-  });
+  const BuyerDropdownOptions: DropdownOptionType[] = roommates.map(
+    (roommate: Roommate) => {
+      return {
+        value: roommate.name,
+        label: roommate.name,
+      };
+    }
+  );
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeItemName(event.target.value));
@@ -31,7 +34,7 @@ function AddItem() {
   };
 
   return (
-    <>
+    <div className='flex'>
       <form style={{ display: 'flex' }}>
         <label>
           Item:
@@ -62,7 +65,7 @@ function AddItem() {
           <button>Add item</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
