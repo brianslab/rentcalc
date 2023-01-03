@@ -11,7 +11,7 @@ const initialState: Item = {
   name: '',
   buyer: '',
   cost: 0,
-  split: [],
+  itemSplit: [],
 };
 
 const itemSlice = createSlice({
@@ -28,7 +28,13 @@ const itemSlice = createSlice({
       state.cost = action.payload;
     },
     changeItemSplit(state, action: ChangeItemSplitAction) {
-      state.split.push(action.payload);
+      if (state.itemSplit.some((sp) => action.payload.roommateID in sp)) {
+        state.itemSplit.map((sp) =>
+          sp.roommateID === action.payload.roommateID ? action.payload : sp
+        );
+      } else {
+        state.itemSplit.push(action.payload);
+      }
     },
   },
 });
