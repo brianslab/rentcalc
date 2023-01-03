@@ -28,9 +28,13 @@ const itemSlice = createSlice({
       state.cost = action.payload;
     },
     changeItemSplit(state, action: ChangeItemSplitAction) {
-      if (state.itemSplit.some((sp) => action.payload.roommateID in sp)) {
+      if (
+        state.itemSplit.some((sp) =>
+          Object.values(sp).includes(action.payload.roommateID)
+        )
+      ) {
         state.itemSplit.map((sp) =>
-          sp.roommateID === action.payload.roommateID ? action.payload : sp
+          action.payload.roommateID === sp.roommateID ? action.payload : sp
         );
       } else {
         state.itemSplit.push(action.payload);
