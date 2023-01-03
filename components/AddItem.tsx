@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeItemBuyer,
@@ -32,6 +32,17 @@ function AddItem() {
     }
   );
 
+  const [accordionInputValue, setAccordionInputValue] = useState(0);
+  function findAccordianInputValue(itemSplit: ItemSplit[], id: string) {
+    console.log(itemSplit);
+    const a = itemSplit.find((sp) => Object.values(sp).includes(id))?.share;
+
+    const b = itemSplit.find((sp) => sp.roommateID === id)?.share;
+
+    console.log('a:', a, 'b:', b);
+    return b || 0;
+  }
+
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeItemName(event.target.value));
   };
@@ -45,36 +56,30 @@ function AddItem() {
     id: string,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    // const newSplit = [...itemSplit];
-    // const index = newSplit.findIndex((sp) => sp.roommateID === id);
-    // newSplit[index] = {
-    //   // ...newSplit[index],
-    //   roommateID: id,
-    //   share: parseInt(event.target.value),
-    // };
-    // dispatch(changeItemSplit(newSplit[index]));
-    // console.log(newSplit);
+    // setAccordionInputValue(findAccordianInputValue(itemSplit, id));
+
     dispatch(
       changeItemSplit({
         roommateID: id,
-        share: parseInt(event.target.value),
+        share: parseInt(event.target.value) || 0,
       })
     );
   };
 
-  function findAccordianInputValue(itemSplit: ItemSplit[], id: string) {
-    return itemSplit.find((sp) => sp.roommateID === id)?.share;
-  }
-
   const AccordionForm: AccordionOptionType[] = roommates.map(
     (roommate: Roommate) => {
-      const inputValue = findAccordianInputValue(itemSplit, roommate.id);
+      const inputValue = itemSplit.find((sp) =>
+        Object.values(sp).includes(roommate.id)
+      )?.share;
+
+      console.log('inputValue:', inputValue);
 
       return {
         id: roommate.id,
         label: roommate.name,
         content: (
           <input
+            // value={accordionInputValue || ''}
             value={inputValue || ''}
             onChange={(event) => handleShareChange(roommate.id, event)}
             type='number'
