@@ -8,5 +8,5 @@ export interface DropdownOptionType {
 export interface DropdownProps {
   options: DropdownOptionType[];
   value: string;
-  onChange: any; //FIXME
+  onChange: (option: DropdownOptionType) => void;
 }
