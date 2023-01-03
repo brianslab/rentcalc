@@ -20,7 +20,7 @@ const purchasesSlice = createSlice({
         name: action.payload.name,
         buyer: action.payload.buyer,
         cost: action.payload.cost,
-        split: action.payload.split,
+        itemSplit: action.payload.itemSplit,
       });
     },
     editItem(state, action: EditItemAction) {

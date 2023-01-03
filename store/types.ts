@@ -22,7 +22,7 @@ export interface Item {
   name: string;
   buyer: string;
   cost: number;
-  split: ItemSplit[];
+  itemSplit: ItemSplit[];
 }
 
 export interface Purchases {

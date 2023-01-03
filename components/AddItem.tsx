@@ -14,9 +14,11 @@ import { DropdownOptionType } from './DropdownTypes';
 
 function AddItem() {
   const dispatch = useDispatch();
-  const { name, buyer, cost, split } = useSelector<RootState, Item>((state) => {
-    return state.item;
-  });
+  const { name, buyer, cost, itemSplit } = useSelector<RootState, Item>(
+    (state) => {
+      return state.item;
+    }
+  );
   const roommates = useSelector<RootState, Roommate[]>((state) => {
     return state.household.roommates;
   });
@@ -43,24 +45,30 @@ function AddItem() {
     id: string,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    const newSplit = [...split];
-    const index = newSplit.findIndex((sp) => sp.roommateID === id);
-    newSplit[index] = {
-      // ...newSplit[index],
-      roommateID: id,
-      share: parseInt(event.target.value),
-    };
-    dispatch(changeItemSplit(newSplit[index]));
-    console.log(newSplit);
+    // const newSplit = [...itemSplit];
+    // const index = newSplit.findIndex((sp) => sp.roommateID === id);
+    // newSplit[index] = {
+    //   // ...newSplit[index],
+    //   roommateID: id,
+    //   share: parseInt(event.target.value),
+    // };
+    // dispatch(changeItemSplit(newSplit[index]));
+    // console.log(newSplit);
+    dispatch(
+      changeItemSplit({
+        roommateID: id,
+        share: parseInt(event.target.value),
+      })
+    );
   };
 
-  function findAccordianInputValue(split: ItemSplit[], id: string) {
-    return split.find((sp) => sp.roommateID === id)?.share;
+  function findAccordianInputValue(itemSplit: ItemSplit[], id: string) {
+    return itemSplit.find((sp) => sp.roommateID === id)?.share;
   }
 
   const AccordionForm: AccordionOptionType[] = roommates.map(
     (roommate: Roommate) => {
-      const inputValue = findAccordianInputValue(split, roommate.id);
+      const inputValue = findAccordianInputValue(itemSplit, roommate.id);
 
       return {
         id: roommate.id,
