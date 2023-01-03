@@ -11,7 +11,7 @@ const initialState: Item = {
   name: '',
   buyer: '',
   cost: 0,
-  itemSplit: [],
+  itemSplit: [{ roommateID: '', share: 0 }],
 };
 
 const itemSlice = createSlice({

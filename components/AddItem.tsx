@@ -14,7 +14,7 @@ import { DropdownOptionType } from './DropdownTypes';
 
 function AddItem() {
   const dispatch = useDispatch();
-  const { name, buyer, cost, itemSplit } = useSelector<RootState, Item>(
+  const { id, name, buyer, cost, itemSplit } = useSelector<RootState, Item>(
     (state) => {
       return state.item;
     }
@@ -66,28 +66,47 @@ function AddItem() {
     );
   };
 
-  const AccordionForm: AccordionOptionType[] = roommates.map(
-    (roommate: Roommate) => {
-      const inputValue = itemSplit.find((sp) =>
-        Object.values(sp).includes(roommate.id)
-      )?.share;
+  // const AccordionForm: AccordionOptionType[] = roommates.map(
+  //   (roommate: Roommate) => {
+  //     const inputValue = itemSplit.find((sp) =>
+  //       Object.values(sp).includes(roommate.id)
+  //     )?.share;
 
-      console.log('inputValue:', inputValue);
+  //     console.log('inputValue:', inputValue);
 
-      return {
-        id: roommate.id,
-        label: roommate.name,
-        content: (
-          <input
-            // value={accordionInputValue || ''}
-            value={inputValue || ''}
-            onChange={(event) => handleShareChange(roommate.id, event)}
-            type='number'
-          />
-        ),
-      };
-    }
-  );
+  //     return {
+  //       id: roommate.id,
+  //       label: roommate.name,
+  //       content: (
+  //         <input
+  //           // value={accordionInputValue || ''}
+  //           value={inputValue || ''}
+  //           onChange={(event) => handleShareChange(roommate.id, event)}
+  //           type='number'
+  //         />
+  //       ),
+  //     };
+  //   }
+  // );
+
+  const reducedItemSplit: any = itemSplit.reduce((acc, curr) => {
+    return { ...acc, ...curr };
+  });
+  const renderedReducedItemSplit = Object.keys(reducedItemSplit).map((key) => {
+    const value = reducedItemSplit[key];
+    return (
+      <p>
+        {key}: {value}
+      </p>
+    );
+  });
+  const AccordionForm: AccordionOptionType[] = [
+    {
+      id,
+      label: 'Split:',
+      content: renderedReducedItemSplit,
+    },
+  ];
 
   return (
     <div className='flex'>
@@ -113,10 +132,10 @@ function AddItem() {
             onChange={handleBuyerChange}
           />
         </label>
-        <label>
-          Split:
-          <Accordion items={AccordionForm} />
-        </label>
+        {/* <label> */}
+        {/* Split: */}
+        <Accordion items={AccordionForm} />
+        {/* </label> */}
         <div>
           <button>Add item</button>
         </div>
