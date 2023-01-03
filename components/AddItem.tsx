@@ -2,6 +2,8 @@ import { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItemBuyer, changeItemCost, changeItemName } from '../store';
 import { RootState, Item, Roommate } from '../store/types';
+import Accordion from './Accordion';
+import { AccordionOptionType } from './AccordionTypes';
 import Dropdown from './Dropdown';
 import { DropdownOptionType } from './DropdownTypes';
 
@@ -22,6 +24,13 @@ function AddItem() {
       };
     }
   );
+  const AccordionForm: AccordionOptionType[] = [
+    {
+      id: '1',
+      label: 'option1',
+      content: 'test',
+    },
+  ];
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeItemName(event.target.value));
@@ -59,7 +68,7 @@ function AddItem() {
         </label>
         <label>
           Split:
-          <button>FIXME - accordian form</button>
+          <Accordion items={AccordionForm} />
         </label>
         <div>
           <button>Add item</button>
