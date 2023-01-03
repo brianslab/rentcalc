@@ -1,5 +1,9 @@
 export type Owes = Record<string, number>;
-export type ItemSplit = Record<string, number>;
+
+export interface ItemSplit {
+  roommateID: string;
+  share: number;
+}
 
 export interface Roommate {
   id: string;
@@ -18,7 +22,7 @@ export interface Item {
   name: string;
   buyer: string;
   cost: number;
-  split: ItemSplit;
+  split: ItemSplit[];
 }
 
 export interface Purchases {

@@ -11,7 +11,7 @@ const initialState: Item = {
   name: '',
   buyer: '',
   cost: 0,
-  split: {},
+  split: [],
 };
 
 const itemSlice = createSlice({
@@ -28,7 +28,7 @@ const itemSlice = createSlice({
       state.cost = action.payload;
     },
     changeItemSplit(state, action: ChangeItemSplitAction) {
-      state.split = action.payload;
+      state.split.push(action.payload);
     },
   },
 });
