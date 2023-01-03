@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface DropdownOptionType {
   value: string;
   label: string;
