@@ -28,7 +28,10 @@ function Accordion({ items }: AccordionProps) {
       <div key={item.id}>
         <div
           className='flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer'
-          onClick={() => handleClick(index)}
+          onClick={(event) => {
+            event.stopPropagation();
+            handleClick(index);
+          }}
         >
           {item.label}
           {icon}
