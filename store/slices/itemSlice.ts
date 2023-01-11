@@ -11,7 +11,6 @@ const initialState: Item = {
   name: '',
   buyer: '',
   cost: 0,
-  // itemSplit: [{ roommateID: '', share: 0 }],
   itemSplit: [],
 };
 
@@ -34,12 +33,13 @@ const itemSlice = createSlice({
           Object.values(sp).includes(action.payload.roommateID)
         )
       ) {
-        // console.log('DBG: existing roommate, updating...');
-        state.itemSplit.map((sp) =>
-          action.payload.roommateID === sp.roommateID ? action.payload : sp
-        );
+        for (let split of state.itemSplit) {
+          if (split.roommateID === action.payload.roommateID) {
+            split.share = action.payload.share;
+          }
+        }
       } else {
-        // console.log('DBG: new roommate, adding...');
+        console.log('DBG: new roommate, adding...');
         state.itemSplit.push(action.payload);
       }
     },
