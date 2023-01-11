@@ -1,6 +1,6 @@
-import { Fragment, useEffect } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeItemSplit } from '../store';
+import { changeItemSplit, removeItem } from '../store';
 import { Item, Roommate, RootState } from '../store/types';
 import { getRoommateByID } from '../utils/getRoommateByID';
 import AddItem from './AddItem';
@@ -29,10 +29,16 @@ function PurchasesList() {
         `;
     });
 
+    function handleItemDelete(id: string) {
+      dispatch(removeItem(id));
+    }
+
     return (
       <div key={item.id}>
         Name: {item.name} | Cost: ${item.cost} | Buyer: {item.buyer} | Split:{' '}
         {renderedItemSplit}
+        {/* <button>edit</button> */}
+        <button onClick={(event) => handleItemDelete(item.id)}>delete</button>
       </div>
     );
   });
