@@ -22,14 +22,6 @@ function PurchasesList() {
   }, []);
 
   const renderedPurchases = purchases.map((item: Item) => {
-    // const renderedSplit = item.itemSplit.map((split: ItemSplit) => {
-    //   return (
-    //     <p>
-    //       {split.roommateID}: {split.share}
-    //     </p>
-    //   );
-    // });
-
     return (
       <Fragment key={item.id}>
         {item.name}: {item.cost} - Buyer: {item.buyer}, Split:
