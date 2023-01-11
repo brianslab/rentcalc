@@ -49,6 +49,9 @@ const itemSlice = createSlice({
       state.name = '';
       state.buyer = '';
       state.cost = 0;
+      state.itemSplit.map((split) => {
+        split.share = 0;
+      });
     });
   },
 });
