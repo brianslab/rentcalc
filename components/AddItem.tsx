@@ -32,17 +32,6 @@ function AddItem() {
     }
   );
 
-  const [accordionInputValue, setAccordionInputValue] = useState(0);
-  function findAccordianInputValue(itemSplit: ItemSplit[], id: string) {
-    console.log(itemSplit);
-    const a = itemSplit.find((sp) => Object.values(sp).includes(id))?.share;
-
-    const b = itemSplit.find((sp) => sp.roommateID === id)?.share;
-
-    console.log('a:', a, 'b:', b);
-    return b || 0;
-  }
-
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeItemName(event.target.value));
   };
@@ -66,37 +55,15 @@ function AddItem() {
     );
   };
 
-  // const AccordionForm: AccordionOptionType[] = roommates.map(
-  //   (roommate: Roommate) => {
-  //     const inputValue = itemSplit.find((sp) =>
-  //       Object.values(sp).includes(roommate.id)
-  //     )?.share;
+  function getRoommateByID(id: string): string {
+    const wantedRoommate = roommates.find((roommate) => roommate.id === id);
+    return wantedRoommate?.name || '';
+  }
 
-  //     console.log('inputValue:', inputValue);
-
-  //     return {
-  //       id: roommate.id,
-  //       label: roommate.name,
-  //       content: (
-  //         <input
-  //           // value={accordionInputValue || ''}
-  //           value={inputValue || ''}
-  //           onChange={(event) => handleShareChange(roommate.id, event)}
-  //           type='number'
-  //         />
-  //       ),
-  //     };
-  //   }
-  // );
-
-  const reducedItemSplit: any = itemSplit.reduce((acc, curr) => {
-    return { ...acc, ...curr };
-  });
-  const renderedReducedItemSplit = Object.keys(reducedItemSplit).map((key) => {
-    const value = reducedItemSplit[key];
+  const renderedItemSplit: any = itemSplit.map((split: ItemSplit) => {
     return (
-      <p>
-        {key}: {value}
+      <p key={split.roommateID}>
+        {getRoommateByID(split.roommateID)}: {split.share}
       </p>
     );
   });
@@ -104,7 +71,7 @@ function AddItem() {
     {
       id,
       label: 'Split:',
-      content: renderedReducedItemSplit,
+      content: renderedItemSplit,
     },
   ];
 

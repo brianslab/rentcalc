@@ -46,7 +46,7 @@ function HouseholdForm() {
             <input value={name || ''} onChange={handleNameChange} />
             <label>Rent Split</label>
             <input
-              value={rentSplit || 0}
+              value={rentSplit || ''}
               onChange={handleRentSplitChange}
               type='number'
               step='0.01'
