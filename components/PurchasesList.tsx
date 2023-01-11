@@ -24,6 +24,7 @@ function PurchasesList() {
   const renderedPurchases = purchases.map((item: Item) => {
     return (
       <Fragment key={item.id}>
+        Name: {item.name} | Cost: ${item.cost} | Buyer: {item.buyer}
         <AddItem />
       </Fragment>
     );

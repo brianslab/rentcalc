@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Item, ItemSplit } from '../types';
+import { addItem } from './purchasesSlice';
 
 interface ChangeItemNameAction extends PayloadAction<string> {}
 interface ChangeItemBuyerAction extends PayloadAction<string> {}
@@ -42,6 +43,13 @@ const itemSlice = createSlice({
         state.itemSplit.push(action.payload);
       }
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(addItem, (state, action) => {
+      state.name = '';
+      state.buyer = '';
+      state.cost = 0;
+    });
   },
 });
 
