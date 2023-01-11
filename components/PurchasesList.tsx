@@ -30,11 +30,10 @@ function PurchasesList() {
     });
 
     return (
-      <Fragment key={item.id}>
+      <div key={item.id}>
         Name: {item.name} | Cost: ${item.cost} | Buyer: {item.buyer} | Split:{' '}
         {renderedItemSplit}
-        <AddItem />
-      </Fragment>
+      </div>
     );
   });
 
