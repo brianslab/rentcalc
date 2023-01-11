@@ -2,6 +2,7 @@ import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItemSplit } from '../store';
 import { Item, Roommate, RootState } from '../store/types';
+import { getRoommateByID } from '../utils/getRoommateByID';
 import AddItem from './AddItem';
 
 function PurchasesList() {
@@ -22,9 +23,16 @@ function PurchasesList() {
   }, []);
 
   const renderedPurchases = purchases.map((item: Item) => {
+    const renderedItemSplit = item.itemSplit.map((split) => {
+      return `
+        ${getRoommateByID(split.roommateID, roommates)} : ${split.share} 
+        `;
+    });
+
     return (
       <Fragment key={item.id}>
-        Name: {item.name} | Cost: ${item.cost} | Buyer: {item.buyer}
+        Name: {item.name} | Cost: ${item.cost} | Buyer: {item.buyer} | Split:{' '}
+        {renderedItemSplit}
         <AddItem />
       </Fragment>
     );
