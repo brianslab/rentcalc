@@ -32,26 +32,23 @@ function AddItem() {
     }
   );
 
-  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+  function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
     dispatch(changeItemName(event.target.value));
-  };
-  const handleCostChange = (event: ChangeEvent<HTMLInputElement>) => {
+  }
+  function handleCostChange(event: ChangeEvent<HTMLInputElement>) {
     dispatch(changeItemCost(parseFloat(event.target.value)));
-  };
-  const handleBuyerChange = (option: DropdownOptionType) => {
+  }
+  function handleBuyerChange(option: DropdownOptionType) {
     dispatch(changeItemBuyer(option.value));
-  };
-  const handleShareChange = (
-    id: string,
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
+  }
+  function handleShareChange(id: string, event: ChangeEvent<HTMLInputElement>) {
     const newSplit = {
       roommateID: id,
       share: parseInt(event.target.value),
     };
 
     dispatch(changeItemSplit(newSplit));
-  };
+  }
 
   function getRoommateByID(id: string): string {
     const wantedRoommate = roommates.find((roommate) => roommate.id === id);
