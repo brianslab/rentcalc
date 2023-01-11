@@ -76,14 +76,14 @@ function AddItem() {
   function handleAddItem(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const itemToAdd = {
-      name,
-      buyer,
-      cost,
-      itemSplit,
-    };
-
-    dispatch(addItem(itemToAdd));
+    dispatch(
+      addItem({
+        name,
+        buyer,
+        cost,
+        itemSplit,
+      })
+    );
   }
 
   return (
