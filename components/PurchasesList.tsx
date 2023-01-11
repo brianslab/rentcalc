@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItemSplit, removeItem } from '../store';
 import { Item, Roommate, RootState } from '../store/types';
@@ -20,7 +20,7 @@ function PurchasesList() {
     for (let roommate of roommates) {
       dispatch(changeItemSplit({ roommateID: roommate.id, share: 0 }));
     }
-  }, []);
+  }, [dispatch, roommates]);
 
   const renderedPurchases = purchases.map((item: Item) => {
     const renderedItemSplit = item.itemSplit.map((split) => {
