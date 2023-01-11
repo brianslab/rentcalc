@@ -39,7 +39,6 @@ const itemSlice = createSlice({
           }
         }
       } else {
-        console.log('DBG: new roommate, adding...');
         state.itemSplit.push(action.payload);
       }
     },
