@@ -1,10 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeItemBuyer,
   changeItemCost,
   changeItemName,
   changeItemSplit,
+  addItem,
 } from '../store';
 import { RootState, Item, Roommate, ItemSplit } from '../store/types';
 import Accordion from './Accordion';
@@ -76,9 +77,22 @@ function AddItem() {
     },
   ];
 
+  function handleAddItem(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const itemToAdd = {
+      name,
+      buyer,
+      cost,
+      itemSplit,
+    };
+
+    dispatch(addItem(itemToAdd));
+  }
+
   return (
     <div className='flex'>
-      <form style={{ display: 'flex' }}>
+      <form style={{ display: 'flex' }} onSubmit={handleAddItem}>
         <label>
           Item:
           <input value={name || ''} onChange={handleNameChange} />

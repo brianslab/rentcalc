@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeItemSplit } from '../store';
-import { Item, ItemSplit, Roommate, RootState } from '../store/types';
+import { Item, Roommate, RootState } from '../store/types';
 import AddItem from './AddItem';
 
 function PurchasesList() {
@@ -24,7 +24,6 @@ function PurchasesList() {
   const renderedPurchases = purchases.map((item: Item) => {
     return (
       <Fragment key={item.id}>
-        {item.name}: {item.cost} - Buyer: {item.buyer}, Split:
         <AddItem />
       </Fragment>
     );
