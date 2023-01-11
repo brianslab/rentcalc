@@ -45,14 +45,12 @@ function AddItem() {
     id: string,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    // setAccordionInputValue(findAccordianInputValue(itemSplit, id));
+    const newSplit = {
+      roommateID: id,
+      share: parseInt(event.target.value),
+    };
 
-    dispatch(
-      changeItemSplit({
-        roommateID: id,
-        share: parseInt(event.target.value) || 0,
-      })
-    );
+    dispatch(changeItemSplit(newSplit));
   };
 
   function getRoommateByID(id: string): string {
@@ -63,7 +61,13 @@ function AddItem() {
   const renderedItemSplit: any = itemSplit.map((split: ItemSplit) => {
     return (
       <p key={split.roommateID}>
-        {getRoommateByID(split.roommateID)}: {split.share}
+        {getRoommateByID(split.roommateID)}:{' '}
+        <input
+          value={split.share || ''}
+          onChange={(event) => handleShareChange(split.roommateID, event)}
+          type='number'
+          step='0.01'
+        />
       </p>
     );
   });
@@ -99,10 +103,7 @@ function AddItem() {
             onChange={handleBuyerChange}
           />
         </label>
-        {/* <label> */}
-        {/* Split: */}
         <Accordion items={AccordionForm} />
-        {/* </label> */}
         <div>
           <button>Add item</button>
         </div>
