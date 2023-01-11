@@ -8,6 +8,7 @@ import {
   addItem,
 } from '../store';
 import { RootState, Item, Roommate, ItemSplit } from '../store/types';
+import { getRoommateByID } from '../utils/getRoommateByID';
 import Accordion from './Accordion';
 import { AccordionOptionType } from './AccordionTypes';
 import Dropdown from './Dropdown';
@@ -51,15 +52,10 @@ function AddItem() {
     dispatch(changeItemSplit(newSplit));
   }
 
-  function getRoommateByID(id: string): string {
-    const wantedRoommate = roommates.find((roommate) => roommate.id === id);
-    return wantedRoommate?.name || '';
-  }
-
   const renderedItemSplit: any = itemSplit.map((split: ItemSplit) => {
     return (
       <p key={split.roommateID}>
-        {getRoommateByID(split.roommateID)}:{' '}
+        {getRoommateByID(split.roommateID, roommates)}:{' '}
         <input
           value={split.share || ''}
           onChange={(event) => handleShareChange(split.roommateID, event)}
