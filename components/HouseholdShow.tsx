@@ -28,12 +28,10 @@ function HouseholdShow() {
   return (
     <div>
       <hr />
-      <p>Household</p>
-      <p>Rent: ${household.rent}</p>
-      <hr />
-      <p>Roommates:</p>
+      <div>Household</div>
+      <div>Rent: ${household.rent}</div>
+      <div>Roommates:</div>
       {renderedRoommates}
-      <hr />
     </div>
   );
 }
